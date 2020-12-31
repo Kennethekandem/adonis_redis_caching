@@ -20,7 +20,8 @@
     "./providers/AppProvider",
     "@adonisjs/core",
     "@adonisjs/session",
-    "@adonisjs/view"
+    "@adonisjs/view",
+    "@adonisjs/redis"
   ],
   "metaFiles": [
     {
