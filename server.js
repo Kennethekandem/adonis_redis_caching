@@ -20,7 +20,6 @@
 const { Ignitor } = require('@adonisjs/ignitor')
 
 new Ignitor(require('@adonisjs/fold'))
-  .preLoad('start/redis')
   .appRoot(__dirname)
   .fireHttpServer()
   .catch(console.error)
