@@ -1,5 +1,7 @@
 'use strict'
 
+const Database = use('Database')
+
 /*
 |--------------------------------------------------------------------------
 | Redis Subscribers
@@ -10,13 +12,16 @@
 |
 */
 
-// const Redis = use('Redis')
+const Redis = use('Redis')
 
 /**
  * Inline subscriber
  */
-// Redis.subscribe('news', async () => {
-// })
+Redis.subscribe('users', async () => {
+    let users = await Database.table('users').select('*');
+
+    await Redis.set(JSON.stringify(users));
+})
 
 /**
  * Binding method from a module saved inside `app/Listeners/News`
