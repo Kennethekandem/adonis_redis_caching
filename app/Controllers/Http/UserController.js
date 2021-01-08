@@ -26,7 +26,7 @@ class UserController {
         }else {
 
             let users = await Database.table('users').select('*');
-            Redis.publish('users');
+            await Redis.set('users', JSON.stringify(users));
 
             return response.status(201).json({
                 status: true,
