@@ -6,12 +6,6 @@ const Redis = use('Redis')
 class UserController {
 
     async index({ response }) {
-        // let users = await Database.table('users').select('*');
-        // return response.status(201).json({
-        //     status: true,
-        //     message: 'fetched all users',
-        //     data: users
-        // });
 
         let cachedUsers = await Redis.get('users');
 
@@ -26,7 +20,7 @@ class UserController {
         }else {
 
             let users = await Database.table('users').select('*');
-            await Redis.set('users', JSON.stringify(users));
+            Redis.publish('users', '');
 
             return response.status(201).json({
                 status: true,
@@ -35,6 +29,6 @@ class UserController {
             });
         }
     }
-}
+}   
 
 module.exports = UserController

@@ -20,7 +20,7 @@ const Redis = use('Redis')
 Redis.subscribe('users', async () => {
     let users = await Database.table('users').select('*');
 
-    await Redis.set(JSON.stringify(users));
+    await Redis.set('users', JSON.stringify(users));
 })
 
 /**
